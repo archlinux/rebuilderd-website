@@ -5,13 +5,19 @@
   "author": "Jelle van der Waa",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
     "babelify": "^10.0.0",
     "budo": "^11.6.3",
-    "bulma": "^0.8.2"
-  }
+    "bulma": "^0.8.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "uglify-js": "^3.9.3"
+  },
+  "browserslist": "> 0.25%, not dead"
 }

@@ -21,7 +21,8 @@ sass-watcher:
 
 .PHONY: js-watcher
 js-watcher:
-	$(YARN) run budo src/index.js:bundle.js --dir public --port $(PORT) --live -t babelify
+	# TODO: yarn run doesn't work..
+	./node_modules/.bin/budo src/index.js:bundle.js --dir public --port $(PORT) --live -- -t babelify
 
 
 # Dist
@@ -30,8 +31,10 @@ js-watcher:
 dist:
 	@mkdir -p "dist/${PACKAGE_NAME}-${VERSION}"
 	cp -avf public/index.html "dist/${PACKAGE_NAME}-${VERSION}/index.html"
+	# TODO: cache-invalidation with version string replaced in html file
+	cp -avf public/favicon.ico "dist/${PACKAGE_NAME}-${VERSION}/favicon.ico"
 	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle.css"
-	$(YARN) run browserify src/index.js -o "dist/${PACKAGE_NAME}-${VERSION}/bundle.js"
+	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s uglifyjs > "dist/${PACKAGE_NAME}-${VERSION}/bundle.js"
 	cd dist && tar --owner=0 --group=0 -czvf ${PACKAGE_NAME}-${VERSION}.tar.gz "${PACKAGE_NAME}-${VERSION}"
 
 

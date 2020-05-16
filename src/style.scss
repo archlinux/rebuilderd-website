@@ -8,8 +8,25 @@ $link: #212952;
 @import "../node_modules/bulma/sass/elements/container.sass";
 @import "../node_modules/bulma/sass/elements/box.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/elements/notification.sass";
 @import "../node_modules/bulma/sass/layout/footer.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
+
+@media (min-width: 500px) {
+	ul {
+		columns: 2;
+	}
+}
+
+@media (min-width: 1024px) {
+	ul {
+		columns: 4;
+	}
+}
+
+@media (min-width: 2000px) {
+	ul {
+		columns: 8;
+	}
+}
