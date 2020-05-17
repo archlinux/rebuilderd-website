@@ -1,4 +1,4 @@
-PACKAGE_NAME=reproducible-website
+PACKAGE_NAME=rebuilder-website
 
 # Tools
 
