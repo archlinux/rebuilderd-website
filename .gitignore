@@ -2,4 +2,5 @@
 /dist
 /public/bundle*
 
+.yarninstall
 .sass-cache
