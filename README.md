@@ -7,8 +7,8 @@ Linux. Uses rebuilderd's API to fetch the current status of reproducibility.
 
 * yarn (for building/development)
 * caddy (for local development)
+* tmux (running watchers)
 * ruby-sass
-* browserify
 
 
 ## Development
