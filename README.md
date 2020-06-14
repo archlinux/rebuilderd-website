@@ -14,8 +14,11 @@ Linux. Uses rebuilderd's API to fetch the current status of reproducibility.
 ## Development
 
 ```
+make
 ./scripts/startdevelop.sh
 ```
+
+Open http://localhost:8881
 
 ## Deployment
 
