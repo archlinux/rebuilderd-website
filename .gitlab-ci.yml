@@ -1,0 +1,10 @@
+image: "archlinux:latest"
+
+dist:
+  script:
+    - pacman -Syu --needed --noconfirm yarn ruby-sass make
+    - make
+
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+
