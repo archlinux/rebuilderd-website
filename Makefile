@@ -11,6 +11,7 @@ PORT ?= 9966
 VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2>/dev/null | sed 's/^v//' || \
 			cat $(CURDIR)/.version 2> /dev/null || echo 0.0.0-unreleased)
 
+all: vendor
 
 # Watchers
 
