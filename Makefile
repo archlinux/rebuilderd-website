@@ -28,7 +28,7 @@ js-watcher:
 # Dist
 
 .PHONY: dist
-dist:
+dist: vendor
 	@mkdir -p "dist/${PACKAGE_NAME}-${VERSION}"
 	cp -avf public/index.html "dist/${PACKAGE_NAME}-${VERSION}/index.html"
 	# TODO: cache-invalidation with version string replaced in html file
