@@ -1,4 +1,4 @@
-PACKAGE_NAME=rebuilder-website
+PACKAGE_NAME=rebuilderd-website
 
 # Tools
 
