@@ -2,6 +2,8 @@
 
 SESSION=reprowebsite
 
+make vendor
+
 tmux new-session -d -s ${SESSION}
 
 # Setup panes
