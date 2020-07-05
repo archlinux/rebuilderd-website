@@ -25,6 +25,14 @@ class App extends React.Component {
     );
   }
 
+  compareSuites(element) {
+    if (element.name == 'core' || element.name == 'extra') {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
   componentDidMount() {
     const url = '/api/v0/pkgs/list';
 
@@ -47,9 +55,11 @@ class App extends React.Component {
 
       const suiteList = [];
 
-      for (let repo of Object.keys(suites).sort()) {
+      for (let repo of Object.keys(suites)) {
         suiteList.push({name: repo, pkgs: suites[repo]});
       }
+
+      suiteList.sort(this.compareSuites);
 
       this.setState({suites: suiteList});
     }).catch((error) => {
