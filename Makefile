@@ -16,11 +16,11 @@ all: vendor
 # Watchers
 
 .PHONY: sass-watcher
-sass-watcher:
+sass-watcher: vendor
 	$(SASS) --watch src/style.scss:public/bundle.css
 
 .PHONY: js-watcher
-js-watcher:
+js-watcher: vendor
 	# TODO: yarn run doesn't work..
 	./node_modules/.bin/budo src/index.js:bundle.js --dir public --port $(PORT) --live -- -t babelify
 
