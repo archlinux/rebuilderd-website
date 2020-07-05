@@ -8,6 +8,7 @@ YARN ?= yarn
 # Variables
 
 PORT ?= 9966
+HOST ?= localhost
 VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2>/dev/null | sed 's/^v//' || \
 			cat $(CURDIR)/.version 2> /dev/null || echo 0.0.0-unreleased)
 
@@ -22,7 +23,7 @@ sass-watcher: vendor
 .PHONY: js-watcher
 js-watcher: vendor
 	# TODO: yarn run doesn't work..
-	./node_modules/.bin/budo src/index.js:bundle.js --dir public --port $(PORT) --live -- -t babelify
+	./node_modules/.bin/budo src/index.js:bundle.js --dir public --host $(HOST) --port $(PORT) --live -- -t babelify
 
 
 # Dist
