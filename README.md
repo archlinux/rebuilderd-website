@@ -10,6 +10,11 @@ Linux. Uses rebuilderd's API to fetch the current status of reproducibility.
 * tmux (running watchers)
 * ruby-sass
 
+On Arch Linux
+
+```
+pacman -S caddy yarn tmux ruby-sass
+```
 
 ## Development
 
