@@ -7,7 +7,7 @@ class Section extends React.Component {
   render() {
     const { suite } = this.props;
     return (
-      <section key={suite.name} id={suite.name} className="section">
+      <section key={suite.name} className="section">
         <div className="tile box has-background-danger">
           <div className="content">
             <p className='title is-5 has-text-white'>{ suite.name }</p>
