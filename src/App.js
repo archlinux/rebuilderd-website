@@ -25,8 +25,14 @@ class App extends React.Component {
     );
   }
 
-  compareSuites(element) {
-    if (element.name == 'core' || element.name == 'extra') {
+  compareSuites(a, b) {
+    if (a.name == 'core') {
+      return -1;
+    } else if (a.name == 'core' && b.name != 'core') {
+      return -1;
+    } else if (a.name == 'extra' && b.name == 'core') {
+      return 1;
+    } else if (a.name == 'extra' && b.name != 'core') {
       return -1;
     } else {
       return 1;
