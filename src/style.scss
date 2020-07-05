@@ -13,6 +13,11 @@ $link: #212952;
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
 
+.section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 @media (min-width: 500px) {
 	ul {
 		columns: 2;
