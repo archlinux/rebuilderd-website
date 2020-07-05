@@ -32,3 +32,13 @@ Creating a distributable tarball can be done with:
 ```
 make dist
 ```
+
+## Release
+
+To release a new version:
+
+```
+git tag -as v$version
+```
+
+Update the rebuilderd-website package in Arch Linux.
