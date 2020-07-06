@@ -14,20 +14,18 @@ $link: #212952;
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
 
-@media (min-width: 500px) {
-	ul {
+
+ul {
+	@include tablet {
 		columns: 2;
 	}
-}
 
-@media (min-width: 1024px) {
-	ul {
+	@include desktop {
 		columns: 4;
 	}
-}
 
-@media (min-width: 2000px) {
-	ul {
+	/* bulma has no 4k option */
+	@media (min-width: 2000px)  {
 		columns: 8;
 	}
 }
