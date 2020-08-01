@@ -17,7 +17,7 @@
     "bulma": "0.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "uglify-js": "^3.9.3"
+    "terser": "^5.0.0"
   },
   "browserslist": "> 0.25%, not dead"
 }
