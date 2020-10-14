@@ -36,6 +36,9 @@ class Header extends React.Component {
       suitesStats.push({name: suite.name, good, bad, unknown, percentage});
     }
 
+    const {good, bad, unknown, percentage} = this.calculateSuiteStats(suites.flatMap(suite => suite.pkgs));
+    const overallStats = {name: 'overall', good, bad, unknown, percentage};
+
     return (
       <section className="hero is-primary">
         <div className="hero-body">
@@ -43,6 +46,9 @@ class Header extends React.Component {
             <h1 className="title">Arch Linux Reproducible status</h1>
   					<p>Welcome to the official experimental Arch Linux <a href="https://github.com/kpcyrd/rebuilderd">rebuilderd</a> instance, this page shows the results of verification builds of official Arch Linux packages in the repositories in an effort to be fully reproducible. For more information read the <a href="https://reproducible-builds.org/">Reproducible Builds website</a> or join the <a href="ircs://chat.freenode.net/archlinux-reproducible">#archlinux-reproducible</a> IRC channel on <a href="https://freenode.net/">Freenode</a>.</p>
           <br/>
+          {!fetchFailed && suites.length > 0 &&
+          <p>Arch Linux is <span className="bold">{ overallStats.percentage }%</span> reproducible with <span className="bad">{ overallStats.bad } bad</span>  <span className="unknown">{ overallStats.unknown } unknown</span> and <span className="good">{ overallStats.good } good</span> packages.</p>
+          }
           {!fetchFailed && suitesStats.map(function(repo, index) {
             return <p key={ index }><a href={"#" + repo.name }>[{ repo.name }]</a> repository is <span className="bold">{ repo.percentage }%</span> reproducible with <span className="bad">{ repo.bad } bad</span>  <span className="unknown">{ repo.unknown } unknown</span> and <span className="good">{ repo.good } good</span> packages.</p>;
           })}
