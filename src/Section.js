@@ -8,7 +8,8 @@ function StatusSection(props) {
   const content = (
     <ul>
     {props.pkgs.map(function(pkg) {
-      return <li key={pkg.name}><p className="subtitle is-6 has-text-white">{pkg.name} {pkg.version}</p></li>
+      let url=`https://www.archlinux.org/packages/${pkg.suite}/${pkg.architecture}/${pkg.name}`;
+      return <li key={pkg.name}><p className="subtitle is-6 has-text-white"><a href={url}>{pkg.name} {pkg.version}</a></p></li>
     })}
     </ul>
   );
