@@ -14,6 +14,14 @@ $link: #212952;
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
 
+a:hover {
+	text-decoration: underline;
+}
+
+.section a:link, .section a:visited {
+	color: white;
+}
+
 .bold {
 	font-weight: bold;
 }
@@ -45,5 +53,48 @@ ul {
 	/* bulma has no 4k option */
 	@media (min-width: 2000px) {
 		columns: 8;
+	}
+}
+
+.box {
+	padding: 5px 10px 10px 10px;
+}
+
+.Collapsible__contentInner {
+	margin-left: 1rem;
+	border: 1px black;
+	color: black;
+}
+
+.Collapsible__trigger {
+	display: block;
+	position: relative;
+	padding: 0 0 0 1rem;
+	color: white;
+
+	&:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	&:before {
+		content: '^';
+		position: absolute;
+		left: 0;
+		display: block;
+		transition: transform 100ms;
+		color: #666;
+	}
+
+	&.is-closed {
+		&:before {
+			transform: rotateZ(90deg);
+		}
+	}
+
+	&.is-open {
+		&:before {
+			transform: rotateZ(180deg);
+		}
 	}
 }
