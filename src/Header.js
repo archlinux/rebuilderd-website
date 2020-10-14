@@ -44,7 +44,7 @@ class Header extends React.Component {
   					<p>Welcome to the official experimental Arch Linux <a href="https://github.com/kpcyrd/rebuilderd">rebuilderd</a> instance, this page shows the results of verification builds of official Arch Linux packages in the repositories in an effort to be fully reproducible. For more information read the <a href="https://reproducible-builds.org/">Reproducible Builds website</a> or join the <a href="ircs://chat.freenode.net/archlinux-reproducible">#archlinux-reproducible</a> IRC channel on <a href="https://freenode.net/">Freenode</a>.</p>
           <br/>
           {!fetchFailed && suitesStats.map(function(repo, index) {
-            return <p key={ index }><a href={"#" + repo.name }>[{ repo.name }]</a> repository is { repo.percentage }% reproducible with { repo.bad } bad and { repo.unknown } unknown packages.</p>;
+            return <p key={ index }><a href={"#" + repo.name }>[{ repo.name }]</a> repository is <span className="bold">{ repo.percentage }%</span> reproducible with <span className="bad">{ repo.bad } bad</span>  <span className="unknown">{ repo.unknown } unknown</span> and <span className="good">{ repo.good } good</span> packages.</p>;
           })}
           </div>
         </div>
