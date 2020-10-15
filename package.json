@@ -15,10 +15,10 @@
     "babelify": "^10.0.0",
     "budo": "^11.6.3",
     "bulma": "0.9",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-collapsible": "^2.8.1",
     "prop-types": "^15.5.8",
+    "react": "^16.13.1",
+    "react-collapsible": "^2.8.1",
+    "react-dom": "^16.13.1",
     "terser": "^5.0.0"
   },
   "browserslist": "> 0.25%, not dead"
