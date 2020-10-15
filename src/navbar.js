@@ -1,0 +1,1 @@
+../.external/archlinux-common-style/jsx/navbar.js

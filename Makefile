@@ -33,7 +33,7 @@ dist: vendor
 	@mkdir -p "dist/${PACKAGE_NAME}-${VERSION}"
 	cp -avf public/index.html "dist/${PACKAGE_NAME}-${VERSION}/index.html"
 	# TODO: cache-invalidation with version string replaced in html file
-	cp -avf public/favicon.ico "dist/${PACKAGE_NAME}-${VERSION}/favicon.ico"
+	cp -Lvf public/favicon.ico public/*.svg -t "dist/${PACKAGE_NAME}-${VERSION}/"
 	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle.css"
 	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s terser --compress --mangle > "dist/${PACKAGE_NAME}-${VERSION}/bundle.js"
 	cd dist && tar --owner=0 --group=0 -czvf ${PACKAGE_NAME}-${VERSION}.tar.gz "${PACKAGE_NAME}-${VERSION}"
@@ -42,12 +42,16 @@ dist: vendor
 # Yarn
 
 .PHONY: vendor
-vendor: .yarninstall
+vendor: submodule .yarninstall
 
 .yarninstall: package.json
 	@$(YARN) install --silent
 	@touch $@
 
+.PHONY:
+submodule:
+	git submodule update --init --recursive
+	make -C .external/archlinux-common-style
 
 .PHONY:
 clean:

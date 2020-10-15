@@ -1,0 +1,3 @@
+[submodule ".external/archlinux-common-style"]
+	path = .external/archlinux-common-style
+	url = ../archlinux-common-style

@@ -1,11 +1,9 @@
 @charset "utf-8";
 
-$primary: #f6f9fc;
-$link: #07b;
+$hero-body-padding: 1.5rem 2rem;
+$box-padding: 5px 10px 10px 10px;
 
-$good: rgb(0, 128, 0);
-$bad: rgb(207, 0, 0);
-$unknown: rgb(255, 164, 5);
+@import "../.external/archlinux-common-style/sass/archlinux.scss";
 
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/helpers/_all.sass";
@@ -18,100 +16,31 @@ $unknown: rgb(255, 164, 5);
 @import "../node_modules/bulma/sass/layout/section.sass";
 @import "../node_modules/bulma/sass/grid/tiles.sass";
 
-#archnavbar {
-	background: #333 none repeat scroll 0 0 !important;
-	border-bottom: 5px solid #08c !important;
-	min-height: 40px !important;
-	padding: 10px 15px !important;
-
-	#logo {
-		background: rgba(0, 0, 0, 0) url("archlogo.8a05bc7f6cd1.svg") no-repeat scroll 0 0 !important;
-		background-size: 100% !important;
-		height: 40px !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		width: 190px !important;
-		float: left !important;
-
-		& a {
-			display: block !important;
-			height: 40px !important;
-			width: 190px !important;
-			text-indent: -9999px !important;
-		}
-	}
-
-	& #archnavbarlist li a {
-		color: #999;
-		font-weight: bold;
-		text-decoration: none;
-	}
-
-	& ul {
-		display: block;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		text-align: right;
-		font-size: 0;
-		letter-spacing: 0;
-
-		& li {
-			display: inline-block;
-			font-size: 14px;
-			font-family: sans-serif !important;
-			line-height: 1.4;
-			letter-spacing: 0;
-			padding-top: 14px;
-			padding-right: 15px;
-			padding-left: 15px;
-			margin: 0;
-
-			& a:hover {
-				color: white !important;
-				text-decoration: underline !important;
-			}
-		}
-	}
-}
-
-html, body, .footer {
-	background-color: $primary;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
 .has-background-info {
 	background-color: #e4eeff !important;
 }
 
-.bold {
-	font-weight: bold;
-}
-
 .good {
-	color: $good;
+	color: $archlinux-color-green;
 
 	& .subtitle:before, & .Collapsible__trigger {
-		color: $good;
+		color: $archlinux-color-green;
 	}
 }
 
 .bad {
-	color: $bad;
+	color: $archlinux-color-red;
 
 	& .subtitle:before, & .Collapsible__trigger {
-		color: $bad;
+		color: $archlinux-color-red;
 	}
 }
 
 .unknown {
-	color: $unknown;
+	color: $archlinux-color-orange;
 
 	& .subtitle:before, & .Collapsible__trigger {
-		color: $unknown;
+		color: $archlinux-color-orange;
 	}
 }
 
@@ -134,10 +63,6 @@ a:hover {
 	}
 }
 
-.box {
-	padding: 5px 10px 10px 10px;
-}
-
 .repo-summary li:nth-child(2) {
 	padding-top: 0.5rem;
 }
@@ -150,8 +75,6 @@ a:hover {
 
 .Collapsible__contentInner {
 	margin-left: 1rem;
-	border: 1px black;
-	color: black;
 }
 
 .Collapsible__trigger {
@@ -186,12 +109,4 @@ a:hover {
 			transform: rotateZ(180deg);
 		}
 	}
-}
-
-.hero-body {
-	padding: 1.5rem 2rem;
-}
-
-.footer {
-	padding: 1rem 1.5rem 1rem !important;
 }

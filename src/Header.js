@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+import ArchLinuxNavbar from './navbar';
 
 
 class Header extends React.Component {
@@ -41,21 +42,7 @@ class Header extends React.Component {
 
     return (
       <section className="hero is-primary">
-      <div id="archnavbar">
-        <div id="logo"><a href="https://archlinux.org" title="Return to the main page">Arch Linux</a></div>
-        <div id="archnavbarmenu">
-            <ul id="archnavbarlist">
-              <li id="anb-home"><a href="https://archlinux.org" title="Arch news, packages, projects and more">Home</a></li>
-              <li id="anb-packages"><a href="https://archlinux.org/packages/" title="Arch Package Database">Packages</a></li>
-              <li id="anb-forums"><a href="https://bbs.archlinux.org/" title="Community forums">Forums</a></li>
-              <li id="anb-wiki"><a href="https://wiki.archlinux.org/" title="Community documentation">Wiki</a></li>
-              <li id="anb-bugs"><a href="https://bugs.archlinux.org/" title="Report and track bugs">Bugs</a></li>
-              <li id="anb-security"><a href="https://security.archlinux.org/" title="Arch Linux Security Tracker">Security</a></li>
-              <li id="anb-aur"><a href="https://aur.archlinux.org/" title="Arch Linux User Repository">AUR</a></li>
-              <li id="anb-download"><a href="https://archlinux.org/download/" title="Get Arch Linux">Download</a></li>
-            </ul>
-          </div>
-        </div>
+        <ArchLinuxNavbar />
         <div className="hero-body">
           <div id="status">
             <h1 className="title">Reproducible status</h1>
@@ -64,10 +51,10 @@ class Header extends React.Component {
             <br/>
             <ul className="repo-summary">
             {!fetchFailed && suites.length > 0 &&
-            <li key="overall">Arch Linux is <span className="bold">{ overallStats.percentage }%</span> reproducible with <span className="bad bold">{ overallStats.bad } bad</span>  <span className="unknown bold">{ overallStats.unknown } unknown</span> and <span className="good bold">{ overallStats.good } good</span> packages.</li>
+            <li key="overall">Arch Linux is <span className="has-text-weight-bold">{ overallStats.percentage }%</span> reproducible with <span className="bad has-text-weight-bold">{ overallStats.bad } bad</span>  <span className="unknown has-text-weight-bold">{ overallStats.unknown } unknown</span> and <span className="good has-text-weight-bold">{ overallStats.good } good</span> packages.</li>
             }
             {!fetchFailed && suitesStats.map(function(repo, index) {
-              return <li key={ index }><a href={"#" + repo.name }>[{ repo.name }]</a> repository is <span className="bold">{ repo.percentage }%</span> reproducible with <span className="bad bold">{ repo.bad } bad</span>  <span className="unknown bold">{ repo.unknown } unknown</span> and <span className="good bold">{ repo.good } good</span> packages.</li>;
+              return <li key={ index }><a href={"#" + repo.name }>[{ repo.name }]</a> repository is <span className="has-text-weight-bold">{ repo.percentage }%</span> reproducible with <span className="bad has-text-weight-bold">{ repo.bad } bad</span>  <span className="unknown has-text-weight-bold">{ repo.unknown } unknown</span> and <span className="good has-text-weight-bold">{ repo.good } good</span> packages.</li>;
             })}
             </ul>
           </div>

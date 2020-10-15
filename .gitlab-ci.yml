@@ -2,7 +2,7 @@ image: "archlinux:latest"
 
 dist:
   script:
-    - pacman -Syu --needed --noconfirm yarn ruby-sass make
+    - pacman -Syu --needed --noconfirm yarn ruby-sass make git
     - make
 
 include:
