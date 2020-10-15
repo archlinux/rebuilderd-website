@@ -9,15 +9,16 @@ function StatusSection(props) {
     <ul>
     {props.pkgs.map(function(pkg) {
       let url=`https://www.archlinux.org/packages/${pkg.suite}/${pkg.architecture}/${pkg.name}`;
-      return <li key={pkg.name}><p className="subtitle is-6 has-text-white"><a href={url}>{pkg.name} {pkg.version}</a></p></li>
+      return <li key={pkg.name}><p className="subtitle is-6"><a href={url}>{pkg.name} {pkg.version}</a></p></li>
     })}
     </ul>
   );
+  const label = `${props.label} (${props.pkgs.length})`;
   return (
-    <div>
+    <div className={ props.label }>
     { isOpen
-      ? <Collapsible trigger={props.label} lazyRender open>{ content }</Collapsible>
-      : <Collapsible trigger={props.label} lazyRender>{ content }</Collapsible>
+      ? <Collapsible trigger={label} lazyRender open>{ content }</Collapsible>
+      : <Collapsible trigger={label} lazyRender>{ content }</Collapsible>
     }
     </div>
   );
@@ -29,10 +30,11 @@ class Section extends React.Component {
     const good = suite.pkgs.filter(pkg => pkg.status == "GOOD");
     const bad = suite.pkgs.filter(pkg => pkg.status == "BAD");
     const unknown = suite.pkgs.filter(pkg => pkg.status == "UNKWN");
+    const name = `${suite.name} (${suite.pkgs.length})`;
     return (
       <section key={suite.name} className="section pt-4 pb-4" id={ suite.name }>
-        <div className="tile box has-background-danger">
-          <Collapsible trigger={ suite.name } open>
+        <div className="tile box has-background-info">
+          <Collapsible trigger={ name } open>
             {good.length > 0 && <StatusSection label="good" pkgs={ good } />}
             {bad.length > 0 && <StatusSection label="bad" pkgs={ bad } open />}
             {unknown.length > 0 && <StatusSection label="unknown" pkgs={ unknown } open />}
