@@ -11,7 +11,7 @@ PORT ?= 9966
 HOST ?= localhost
 VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2>/dev/null | sed 's/^v//' || \
 			cat $(CURDIR)/.version 2> /dev/null || echo 0.0.0-unreleased)
-ARCHLOGO = public/archlogo.8a05bc7f6cd1.svg
+ARCHLOGO = archlogo.8a05bc7f6cd1.svg
 
 all: vendor
 
@@ -34,7 +34,7 @@ dist: vendor
 	@mkdir -p "dist/${PACKAGE_NAME}-${VERSION}"
 	cp -avf public/index.html "dist/${PACKAGE_NAME}-${VERSION}/index.html"
 	# TODO: cache-invalidation with version string replaced in html file
-	svgcleaner ${ARCHLOGO} "$dist/${PACKAGE_NAME}-${VERSION}/${ARCHLOGO}"
+	svgcleaner public/${ARCHLOGO} "dist/${PACKAGE_NAME}-${VERSION}/${ARCHLOGO}"
 	cp -vf public/favicon.ico -t "dist/${PACKAGE_NAME}-${VERSION}/"
 	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle.css"
 	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s terser --compress --mangle > "dist/${PACKAGE_NAME}-${VERSION}/bundle.js"
