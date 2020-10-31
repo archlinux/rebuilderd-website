@@ -36,8 +36,13 @@ dist: vendor
 	# TODO: cache-invalidation with version string replaced in html file
 	svgcleaner public/${ARCHLOGO} "dist/${PACKAGE_NAME}-${VERSION}/${ARCHLOGO}"
 	cp -vf public/favicon.ico -t "dist/${PACKAGE_NAME}-${VERSION}/"
-	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle.css"
-	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s terser --compress --mangle > "dist/${PACKAGE_NAME}-${VERSION}/bundle.js"
+	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle-${VERSION}.css"
+	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s terser --compress --mangle > "dist/${PACKAGE_NAME}-${VERSION}/bundle-${VERSION}.js"
+
+	# sed the version file in html
+	@sed -i 's/bundle.js/bundle-${VERSION}.js/' "dist/${PACKAGE_NAME}-${VERSION}/index.html"
+	@sed -i 's/bundle.css/bundle-${VERSION}.css/' "dist/${PACKAGE_NAME}-${VERSION}/index.html"
+
 	cd dist && tar --owner=0 --group=0 -czvf ${PACKAGE_NAME}-${VERSION}.tar.gz "${PACKAGE_NAME}-${VERSION}"
 
 
