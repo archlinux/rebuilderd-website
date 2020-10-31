@@ -4,7 +4,13 @@ dist:
   script:
     - pacman -Syu --needed --noconfirm yarn ruby-sass make git
     - make
+    - make dist
+  after_script:
+    - echo "dist_size_bytes $(make distsize) " > metrics.txt
+  artifacts:
+    reports:
+      metrics: metrics.txt
+      dotenv: build.env
 
 include:
   - template: Dependency-Scanning.gitlab-ci.yml
-

@@ -54,6 +54,10 @@ submodule:
 	make -C .external/archlinux-common-style
 
 .PHONY:
+distsize:
+	@du -s "dist/${PACKAGE_NAME}-${VERSION}"
+
+.PHONY:
 clean:
 	$(YARN) cache clean
 	@rm -rf dist
