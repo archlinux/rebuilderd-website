@@ -2,7 +2,7 @@ image: "archlinux:latest"
 
 dist:
   script:
-    - pacman -Syu --needed --noconfirm yarn ruby-sass make git
+    - pacman -Syu --needed --noconfirm yarn ruby-sass make git svgcleaner
     - make
     - make dist
   after_script:
