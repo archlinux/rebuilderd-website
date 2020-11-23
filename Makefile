@@ -1,4 +1,6 @@
 PACKAGE_NAME=rebuilderd-website
+PREFIX ?= /usr/local
+WEBDIR = $(PREFIX)/share/webapps/${PACKAGE_NAME}
 
 # Tools
 
@@ -25,6 +27,23 @@ sass-watcher: vendor
 js-watcher: vendor
 	# TODO: yarn run doesn't work..
 	./node_modules/.bin/budo src/index.js:bundle.js --dir public --host $(HOST) --port $(PORT) --live -- -t babelify
+
+
+# Install
+.PHONY: install
+install: vendor
+	install -Dm644 public/index.html $(DESTDIR)$(WEBDIR)/index.html
+	install -Dm644 public/favicon.ico $(DESTDIR)$(WEBDIR)/favicon.ico
+
+	svgcleaner public/${ARCHLOGO} $(DESTDIR)$(WEBDIR)/archlogo-${VERSION}.svg
+	$(SASS) -t compressed src/style.scss $(DESTDIR)$(WEBDIR)/bundle-${VERSION}.css
+	$(YARN) run -s browserify -t babelify src/index.js | $(YARN) run -s terser --compress --mangle > $(DESTDIR)$(WEBDIR)/bundle-${VERSION}.js
+
+	# sed the version file in html
+	@sed -i 's/bundle.js/bundle-${VERSION}.js/' $(DESTDIR)$(WEBDIR)/index.html
+	@sed -i 's/bundle.css/bundle-${VERSION}.css/' $(DESTDIR)$(WEBDIR)/index.html
+	# sed the svg version in css
+	@sed -i 's/${ARCHLOGO}/archlogo-${VERSION}.svg/' $(DESTDIR)$(WEBDIR)/bundle-${VERSION}.css
 
 
 # Dist
