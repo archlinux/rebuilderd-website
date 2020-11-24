@@ -33,7 +33,6 @@ js-watcher: vendor
 dist: vendor
 	@mkdir -p "dist/${PACKAGE_NAME}-${VERSION}"
 	cp -avf public/index.html "dist/${PACKAGE_NAME}-${VERSION}/index.html"
-	# TODO: cache-invalidation with version string replaced in html file
 	svgcleaner public/${ARCHLOGO} "dist/${PACKAGE_NAME}-${VERSION}/archlogo-${VERSION}.svg"
 	cp -vf public/favicon.ico -t "dist/${PACKAGE_NAME}-${VERSION}/"
 	$(SASS) -t compressed src/style.scss "dist/${PACKAGE_NAME}-${VERSION}/bundle-${VERSION}.css"
