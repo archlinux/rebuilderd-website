@@ -7,19 +7,19 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.12.8",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
-    "@babel/plugin-transform-react-jsx": "^7.9.4",
-    "@babel/preset-env": "^7.10.2",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/plugin-transform-react-jsx": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
     "babelify": "^10.0.0",
     "budo": "^11.6.3",
     "bulma": "0.9",
     "prop-types": "^15.5.8",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "react-collapsible": "^2.8.1",
-    "react-dom": "^16.13.1",
-    "terser": "^5.0.0"
+    "react-dom": "^17.0.1",
+    "terser": "^5.5.0"
   },
   "browserslist": "> 0.25%, not dead"
 }
