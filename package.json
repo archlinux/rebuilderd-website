@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.12.8",
+    "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
     "@babel/plugin-transform-react-jsx": "^7.12.7",
     "@babel/preset-env": "^7.12.7",
@@ -19,7 +19,7 @@
     "react": "^17.0.1",
     "react-collapsible": "^2.8.1",
     "react-dom": "^17.0.1",
-    "terser": "^5.5.0"
+    "terser": "^5.5.1"
   },
   "browserslist": "> 0.25%, not dead"
 }
