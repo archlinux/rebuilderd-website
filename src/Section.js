@@ -35,7 +35,7 @@ class Section extends React.Component {
     const unknown = suite.pkgs.filter(pkg => pkg.status == "UNKWN");
     const name = `${suite.name} (${suite.pkgs.length})`;
     return (
-      <section key={suite.name} className="section pt-4 pb-4" id={ suite.name }>
+      <section key={suite.name} className="section pt-4 pb-4">
         <div className="tile box has-background-info">
           <Collapsible trigger={ name } open>
             {good.length > 0 && <StatusSection label="good" pkgs={ good } />}
