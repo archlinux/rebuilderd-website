@@ -20,8 +20,8 @@ class Body extends React.Component {
         </div>
       </section>
       }
-      {suites.map(suite =>
-        <Section key={suite.name} suite={suite}/>
+      {suites.map((suite, index) =>
+        <Section key={suite.name} suite={suite} open={index < 1}/>
       )}
       </React.Fragment>
     )

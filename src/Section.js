@@ -29,7 +29,7 @@ function StatusSection(props) {
 
 class Section extends React.Component {
   render() {
-    const { suite } = this.props;
+    const { suite, open } = this.props;
     const good = suite.pkgs.filter(pkg => pkg.status == "GOOD");
     const bad = suite.pkgs.filter(pkg => pkg.status == "BAD");
     const unknown = suite.pkgs.filter(pkg => pkg.status == "UNKWN");
@@ -37,7 +37,7 @@ class Section extends React.Component {
     return (
       <section key={suite.name} className="section pt-4 pb-4">
         <div className="tile box has-background-info">
-          <Collapsible trigger={ name } open>
+          <Collapsible trigger={ name } lazyRender open={open}>
             {good.length > 0 && <StatusSection label="good" pkgs={ good } />}
             {bad.length > 0 && <StatusSection label="bad" pkgs={ bad } open />}
             {unknown.length > 0 && <StatusSection label="unknown" pkgs={ unknown } open />}
