@@ -1,19 +1,9 @@
-localhost:8881 {
-    errors stderr
-    log stdout
+http://localhost:8881
 
-    gzip
+log
 
-    proxy /api https://reproducible.archlinux.org/ {
-        transparent
-    }
+encode gzip
 
-    proxy / 127.0.0.1:9966 {
-        transparent
-    }
-
-    proxy /livereload 127.0.0.1:9966 {
-	websocket
-        transparent
-    }
-}
+reverse_proxy 127.0.0.1:9966
+reverse_proxy /api/* https://reproducible.archlinux.org
+reverse_proxy /livereload 127.0.0.1:9966

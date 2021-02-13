@@ -14,7 +14,7 @@ tmux select-pane -t 1
 tmux send-keys "make sass-watcher" C-m
 tmux split-window -v
 tmux select-pane -t 2
-tmux send-keys "caddy" C-m
+tmux send-keys "caddy run" C-m
 
 # Set default window
 tmux select-window -t $SESSION:+1
