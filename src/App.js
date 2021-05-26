@@ -11,15 +11,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       fetchFailed: false,
-      suites: []
+      suites: [],
+      dashboard: null,
     };
   }
 
   render() {
-    const { fetchFailed, suites } = this.state;
+    const { fetchFailed, dashboard, suites } = this.state;
     return (
       <React.Fragment>
-        <Header fetchFailed={fetchFailed} suites={suites}/>
+        <Header fetchFailed={fetchFailed} dashboard={dashboard}/>
         <Body fetchFailed={fetchFailed} suites={suites}/>
       </React.Fragment>
     );
@@ -39,7 +40,26 @@ class App extends React.Component {
     }
   }
 
+  loadDashboard() {
+    const url = '/api/v0/dashboard';
+
+    fetch(url).then((response) => {
+      if (!response.ok) {
+        this.setState({fetchFailed: true});
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then((data) => {
+      this.setState({dashboard: data});
+    }).catch((error) => {
+      console.log(error);
+      this.setState({fetchFailed: true});
+    });
+  }
+
   componentDidMount() {
+    this.loadDashboard()
+
     const url = '/api/v0/pkgs/list';
 
     fetch(url).then((response) => {
@@ -76,3 +96,5 @@ class App extends React.Component {
 }
 
 module.exports = {App};
+
+// vim: ts=2 sw=2 et:

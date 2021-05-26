@@ -6,38 +6,46 @@ import ArchLinuxNavbar from './navbar';
 
 class Header extends React.Component {
   calculateSuiteStats(data) {
-    let good = 0;
-    let bad = 0;
-    let unknown = 0;
+    let good = data['good'];
+    let bad = data['bad'];
+    let unknown = data['unknown'];
 
-    for (let pkg of data) {
-      switch (pkg.status) {
-        case 'GOOD':
-          good++;
-          break
-        case 'BAD':
-          bad++;
-          break
-        case 'UNKWN':
-          unknown++;
-          break
-      }
-    }
-
-    const percentage = (good / data.length * 100).toFixed(1);
+    const percentage = (good / (good + bad + unknown) * 100).toFixed(1);
     return {good, bad, unknown, percentage};
   }
 
+  // TODO: this is duplciated code from App.js
+  compareSuites(a, b) {
+    if (a.name == 'core') {
+      return -1;
+    } else if (a.name == 'core' && b.name != 'core') {
+      return -1;
+    } else if (a.name == 'extra' && b.name == 'core') {
+      return 1;
+    } else if (a.name == 'extra' && b.name != 'core') {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
   render() {
-    const {fetchFailed, suites } = this.props;
+    const {fetchFailed, dashboard, suites } = this.props;
+    const overall = {good: 0, unknown: 0, bad: 0};
     const suitesStats = [];
 
-    for (let suite of suites) {
-      const {good, bad, unknown, percentage} = this.calculateSuiteStats(suite.pkgs);
-      suitesStats.push({name: suite.name, good, bad, unknown, percentage});
+    if (dashboard) {
+      for (const [key, value] of Object.entries(dashboard.suites)) {
+        const {good, bad, unknown, percentage} = this.calculateSuiteStats(value);
+        overall['good'] += good;
+        overall['bad'] += bad;
+        overall['unknown'] += unknown;
+        suitesStats.push({name: key, good, bad, unknown, percentage});
+      }
+      suitesStats.sort(this.compareSuites);
     }
 
-    const {good, bad, unknown, percentage} = this.calculateSuiteStats(suites.flatMap(suite => suite.pkgs));
+    const {good, bad, unknown, percentage} = this.calculateSuiteStats(overall);
     const overallStats = {name: 'overall', good, bad, unknown, percentage};
 
     return (
@@ -50,10 +58,10 @@ class Header extends React.Component {
             <p>For more information read the <a href="https://reproducible-builds.org/">Reproducible Builds website</a> or join the <a href="ircs://libera.chat/archlinux-reproducible">#archlinux-reproducible</a> IRC channel on <a href="https://libera.chat/">libera.chat</a>.</p>
             <br/>
             <ul className="repo-summary">
-            {!fetchFailed && suites.length == 0 &&
+            {!fetchFailed && !dashboard &&
             <p><b>Loading...</b></p>
             }
-            {!fetchFailed && suites.length > 0 &&
+            {!fetchFailed && dashboard &&
             <li key="overall">Arch Linux is <span className="has-text-weight-bold">{ overallStats.percentage }%</span> reproducible with <span className="bad has-text-weight-bold">{ overallStats.bad } bad</span>  <span className="unknown has-text-weight-bold">{ overallStats.unknown } unknown</span> and <span className="good has-text-weight-bold">{ overallStats.good } good</span> packages.</li>
             }
             {!fetchFailed && suitesStats.map(function(repo, index) {
@@ -68,3 +76,5 @@ class Header extends React.Component {
 }
 
 module.exports = {Header};
+
+// vim: ts=2 sw=2 et:
