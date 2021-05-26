@@ -50,6 +50,9 @@ class Header extends React.Component {
             <p>For more information read the <a href="https://reproducible-builds.org/">Reproducible Builds website</a> or join the <a href="ircs://libera.chat/archlinux-reproducible">#archlinux-reproducible</a> IRC channel on <a href="https://libera.chat/">libera.chat</a>.</p>
             <br/>
             <ul className="repo-summary">
+            {!fetchFailed && suites.length == 0 &&
+            <p><b>Loading...</b></p>
+            }
             {!fetchFailed && suites.length > 0 &&
             <li key="overall">Arch Linux is <span className="has-text-weight-bold">{ overallStats.percentage }%</span> reproducible with <span className="bad has-text-weight-bold">{ overallStats.bad } bad</span>  <span className="unknown has-text-weight-bold">{ overallStats.unknown } unknown</span> and <span className="good has-text-weight-bold">{ overallStats.good } good</span> packages.</li>
             }
