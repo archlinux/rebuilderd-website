@@ -59,7 +59,7 @@ class Header extends React.Component {
             <br/>
             <ul className="repo-summary">
             {!fetchFailed && !dashboard &&
-            <p><b>Loading...</b></p>
+            <p><b>Loading stats...</b></p>
             }
             {!fetchFailed && dashboard &&
             <li key="overall">Arch Linux is <span className="has-text-weight-bold">{ overallStats.percentage }%</span> reproducible with <span className="bad has-text-weight-bold">{ overallStats.bad } bad</span>  <span className="unknown has-text-weight-bold">{ overallStats.unknown } unknown</span> and <span className="good has-text-weight-bold">{ overallStats.good } good</span> packages.</li>

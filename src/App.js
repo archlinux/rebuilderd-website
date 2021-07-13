@@ -57,9 +57,7 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.loadDashboard()
-
+  loadPkgs() {
     const url = '/api/v0/pkgs/list';
 
     fetch(url).then((response) => {
@@ -92,6 +90,11 @@ class App extends React.Component {
       console.log(error);
       this.setState({fetchFailed: true});
     });
+  }
+
+  componentDidMount() {
+    this.loadDashboard()
+    this.loadPkgs()
   }
 }
 

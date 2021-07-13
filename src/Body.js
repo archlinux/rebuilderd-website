@@ -11,6 +11,11 @@ class Body extends React.Component {
 
     return (
       <React.Fragment>
+      {!fetchFailed && !suites.length &&
+      <section className="section">
+        <p><b>Loading packages...</b></p>
+      </section>
+      }
       { fetchFailed &&
       <section className="section">
         <div className="tile box has-background-danger">
