@@ -13,7 +13,8 @@ function StatusSection(props) {
       if (pkg.build_id) {
         let build_log_url=`/api/v0/builds/${pkg.build_id}/log`;
         let diffoscope_url=`/api/v0/builds/${pkg.build_id}/diffoscope`;
-        links=<span className="noselect"> <a href={build_log_url} title="build log"><img src="icons/note-16.svg" className="icon" /></a> {pkg.has_diffoscope && <a href={diffoscope_url} title="diffoscope"><img src="icons/search-16.svg" className="icon" /></a>}</span>;
+        let attestation_url=`/api/v0/builds/${pkg.build_id}/attestation`;
+        links=<span className="noselect"> <a href={build_log_url} title="build log"><img src="icons/note-16.svg" className="icon" /></a> {pkg.has_diffoscope && <a href={diffoscope_url} title="diffoscope"><img src="icons/search-16.svg" className="icon" /></a>} {pkg.has_attestation && <a href={attestation_url} title="attestation"><img src="icons/in-toto.svg" className="icon" /></a>}</span>;
       }
       return <li key={pkg.name}><p className="subtitle is-6"><a href={url}>{pkg.name} {pkg.version}</a>{links}</p></li>
     })}
